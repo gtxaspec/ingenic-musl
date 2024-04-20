@@ -60,7 +60,7 @@ void *mmap(void *start, size_t len, int prot, int flags, int fd, off_t off) {
 }
 #else // This else branch makes INGENIC_MMAP_SHARED the default if INGENIC_MMAP_STATIC is not defined
 void *mmap(void *start, size_t len, int prot, int flags, int fd, uint32_t off) {
-	DEBUG_PRINT(stderr, "[WARNING] Called INGENIC_MMAP_STATIC\n");
+	DEBUG_PRINT(stderr, "[WARNING] Called INGENIC_MMAP_SHARED\n");
 	return (void *)syscall(SYS_mmap2, start, len, prot, flags, fd, off >> 12);
 }
 #endif
