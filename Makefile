@@ -1,3 +1,8 @@
+CROSS_COMPILE ?=
+
+CC = $(CROSS_COMPILE)gcc
+AR = $(CROSS_COMPILE)ar
+
 CFLAGS += -Wall -O2
 LDFLAGS_SHARED = -shared
 LDFLAGS_STATIC =
@@ -25,7 +30,7 @@ $(TARGET_LIB_SHARED): $(OBJ_FILES)
 	$(CC) $(LDFLAGS_SHARED) -o $@ $^
 
 $(TARGET_LIB_STATIC): $(OBJ_FILES)
-	ar rcs $@ $^
+	$(AR) rcs $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -fPIC -c $< -o $@
